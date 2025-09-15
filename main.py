@@ -7,7 +7,7 @@ from feature_extraction import FeatureExtractor
 from caption_processor import CaptionProcessor
 from data_generator import DataGenerator
 from model_builder import CaptionModelBuilder
-from utils import predict_caption_beam_search#predict_caption
+from utils import predict_caption
 
 from nltk.translate.bleu_score import corpus_bleu # type: ignore
 
@@ -40,9 +40,7 @@ def main():
         lambda: data_gen.generator(train_ids),
         output_signature=(
             (
-                #tf.TensorSpec(shape = (None, 4096), dtype = tf.float32),  # X1
-                tf.TensorSpec(shape = (None, 2048), dtype = tf.float32),
-                #
+                tf.TensorSpec(shape = (None, 4096), dtype = tf.float32),  # X1
                 tf.TensorSpec(shape = (None, max_len), dtype = tf.int32)  # X2
             ),
             tf.TensorSpec(shape = (None, vocab_size), dtype = tf.float32)  # Y
@@ -58,9 +56,8 @@ def main():
     actual,predicted=list(), list()
     for key in tqdm(test_ids):
         captions = mapping[key]
-        #  y_pred = predict_caption(model, features[key], tokenizer, max_len)
-        y_pred = predict_caption_beam_search(model, features[key], tokenizer, max_len, beam_index=3)
-        #
+        y_pred = predict_caption(model, features[key], tokenizer, max_len)
+        
         actual_captions = [caption.split() for caption in captions]
         y_pred = y_pred.split()
         actual.append(actual_captions)

@@ -7,9 +7,7 @@ class CaptionModelBuilder:
         self.max_len = max_len
 
     def build(self):
-        #inputs1 = Input(shape = (4096,))
-        inputs1 = Input(shape = (2048,))
-        #
+        inputs1 = Input(shape = (4096,))
         fe1 = Dropout(0.4)(inputs1)
         fe2 = Dense(256, activation='relu')(fe1)
 

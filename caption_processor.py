@@ -44,12 +44,8 @@ class CaptionProcessor:
             for i in range(len(captions)):
                 caption = captions[i]
                 caption = caption.lower()
-                # caption = caption.replace("[^A-Za-z]", '')
-                # caption = caption.replace("\s+", ' ')
-                caption = re.sub(r"[^a-zA-Z]", " ", caption)
-                caption = re.sub(r"\s+", " ", caption)
-                caption = caption.lower().strip()
-                #
+                caption = caption.replace("[^A-Za-z]", '')
+                caption = caption.replace("\s+", ' ')
                 caption = 'startseq ' + " ".join([word for word in caption.split() if len(word) > 1]) + ' endseq'
                 captions[i] = caption
 

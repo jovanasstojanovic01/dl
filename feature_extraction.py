@@ -4,19 +4,14 @@ from tqdm import tqdm
 
 from utils import image_features_extraction
 
-# from tensorflow.keras.applications.vgg16 import VGG16 # type: ignore
-from tensorflow.keras.applications.inception_v3 import InceptionV3, preprocess_input # type: ignore
+from tensorflow.keras.applications.vgg16 import VGG16 # type: ignore
 
 from tensorflow.keras.models import Model # type: ignore
 
 class FeatureExtractor:
     def __init__(self, features_file, images_directory):
-        # vgg_model = VGG16()
-        # self.model = Model(inputs = vgg_model.inputs, outputs = vgg_model.layers[-2].output)
-        model = InceptionV3(weights='imagenet')
-        model = Model(inputs=model.input, outputs=model.get_layer('avg_pool').output)
-        self.model = model
-        #
+        vgg_model = VGG16()
+        self.model = Model(inputs = vgg_model.inputs, outputs = vgg_model.layers[-2].output)
         self.features_file = features_file
         self.images_directory = images_directory
 
