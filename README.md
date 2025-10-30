@@ -42,7 +42,3 @@ koji sadrži sledeće informacije:
 * prikaz arhitekture softvera u pogledu glavnih komponenti,
 * najznačajnije detalje implementacije,
 * pregled i analizu ostvarenih rezultata.
-
----
-
-Hoćeš da ti ovo formatiram kao gotov `README.md` fajl za preuzimanje (sa emoji oznakama i Markdown formatiranjem zadržanim)?
